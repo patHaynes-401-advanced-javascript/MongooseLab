@@ -4,7 +4,7 @@
 
 ### Links and Resources
 * [submission PR](https://github.com/patHaynes-401-advanced-javascript/MongooseLab/pull/1)
-* [travis](https://github.com/patHaynes-401-advanced-javascript/lab-01/pull/4/checks?check_run_id=233335907)
+* [travis](https://travis-ci.com/patHaynes-401-advanced-javascript/MongooseLab/builds/129013640)
 
 
 ## Running the app

@@ -14,7 +14,7 @@ app.get('/api/dogs', (req, res, next) => {
     .catch(next);
 });
 
-app.get('api/dogs/:id', (req, res, next) => {
+app.get('/api/dogs/:id', (req, res, next) => {
   Dog.findById(req.params.id)
     .then(dog => {
       res.json(dog);
