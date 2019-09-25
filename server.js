@@ -1,53 +1,19 @@
+// loads the .env environment vaiables
 require('dotenv').config();
-require('./lib/connect')();
-const express = require('express');
-const app = express();
-const Dog = require('./lib/models/dog');
 
-app.use(express.json());
+// connect to mongo
+// require('./lib/connect')(process.env.MONGODB_URI);
 
-app.get('/api/dogs', (req, res, next) => {
-  Dog.find()
-    .then(dogs => {
-      res.json(dogs);
-    })
-    .catch(next);
+//require the app http event handler
+const app = require('./lib/app');
+
+// create an http server that uses app
+// const createServer = require('http').createServer ==== const { createServer } = require('http')
+const { createServer } = require('http');
+const server = createServer(app);
+
+// start the server by listening on a port
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log('Listen on ${PORT}');
 });
-
-app.get('/api/dogs/:id', (req, res, next) => {
-  Dog.findById(req.params.id)
-    .then(dog => {
-      res.json(dog);
-    })
-    .catch(next);
-});
-
-app.post('/api/dogs', (req, res, next) => {
-  Dog.create(req.body)
-    .then(dog => {
-      res.json(dog);
-    })
-    .catch(next);
-});
-
-app.put('/api/dogs/:id', (req, res, next) => {
-  Dog.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true }
-  )
-    .then(dog => {
-      res.json(dog);
-    })
-    .catch(next);
-});
-
-app.delete('/api/dogs/:id', (req, res, next) => {
-  Dog.findByIdAndRemove(req.params.id)
-    .then(removed => {
-      res.json(removed);
-    })
-    .catch(next);
-});
-
-app.listen(3000, () => console.log('server running on 3000'));
