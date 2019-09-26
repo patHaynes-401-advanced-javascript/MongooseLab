@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 // connect to mongo
-// require('./lib/connect')(process.env.MONGODB_URI);
+require('./lib/connect')(process.env.MONGODB_URI);
 
 //require the app http event handler
 const app = require('./lib/app');
